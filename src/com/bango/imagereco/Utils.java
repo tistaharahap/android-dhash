@@ -55,7 +55,7 @@ public class Utils {
         byte[] jdata = baos.toByteArray();
         
         BitmapFactory.Options bitmapFatoryOptions = new BitmapFactory.Options();
-        bitmapFatoryOptions.inPreferredConfig = Bitmap.Config.RGB_565;
+        bitmapFatoryOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;
         
         Bitmap bmp = BitmapFactory.decodeByteArray(jdata, 0, jdata.length, bitmapFatoryOptions);
         return bmp;
