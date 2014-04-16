@@ -1,0 +1,67 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:0.9.2+'
+	}
+}
+
+apply plugin: 'android'
+
+dependencies {
+	compile files('libs/android-support-v4.jar')
+}
+
+android {
+	buildToolsVersion "19.0.3"
+	compileSdkVersion 19
+
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+            		java.srcDirs = ['src']
+            		resources.srcDirs = ['src']
+            		aidl.srcDirs = ['src']
+            		renderscript.srcDirs = ['src']
+            		res.srcDirs = ['res']
+            		assets.srcDirs = ['assets']
+		}
+	}
+
+	productFlavors {
+        armv7 {
+            ndk {
+                abiFilter "armeabi-v7a"
+            }
+        }
+        arm {
+            ndk {
+                abiFilter "armeabi"
+            }
+        }
+    }
+
+    signingConfigs {
+	    release {
+	        storeFile file('/Users/batista/.android/debug.keystore')
+	        storePassword 'android'
+	        keyAlias 'androiddebugkey'
+	        keyPassword 'android'
+	    }
+
+	    debug {
+	    	storeFile file('/Users/batista/.android/debug.keystore')
+	        storePassword 'android'
+	        keyAlias 'androiddebugkey'
+	        keyPassword 'android'
+	    }
+	}
+
+	buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
